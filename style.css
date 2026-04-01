@@ -1,0 +1,43 @@
+body {
+    background: black;
+    color: lime;
+    font-family: monospace;
+    text-align: center;
+}
+
+/* Login box */
+.login-box {
+    margin-top: 100px;
+}
+
+/* Inputs */
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+/* Buttons */
+button {
+    background: lime;
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: red;
+}
+
+/* Menu layout */
+.menu {
+    margin-top: 50px;
+}
+
+/* Dark mode */
+.dark {
+    background: #111;
+    color: #0f0;
+}
