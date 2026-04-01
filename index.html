@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Security App</title>
+
+    <style>
+        body {
+            background: black;
+            color: lime;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        button {
+            background: lime;
+            color: black;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: red;
+        }
+
+        .dark {
+            background: #111;
+            color: #0f0;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- 🔐 LOGIN PAGE -->
+<div id="loginPage" class="page active">
+    <h2>🔐 Cyber Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
+</div>
+
+<!-- 🛡 DASHBOARD -->
+<div id="dashboardPage" class="page">
+    <h1>🛡 Cyber Dashboard</h1>
+
+    <button onclick="showPage('scanPage')">Scan System</button>
+    <button onclick="showPage('reportsPage')">Reports</button>
+    <button onclick="showPage('settingsPage')">Settings</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<!-- 🔍 SCAN PAGE -->
+<div id="scanPage" class="page">
+    <h2>🔎 System Scan</h2>
+
+    <button onclick="startScan()">Start Scan</button>
+    <p id="scanResult"></p>
+
+    <button onclick="showPage('dashboardPage')">Back</button>
+</div>
+
+<!-- 📊 REPORTS -->
+<div id="reportsPage" class="page">
+    <h2>📊 Security Reports</h2>
+
+    <button onclick="loadReports()">Load Reports</button>
+    <ul id="reportsList"></ul>
+
+    <button onclick="showPage('dashboardPage')">Back</button>
+</div>
+
+<!-- ⚙️ SETTINGS -->
+<div id="settingsPage" class="page">
+    <h2>⚙️ Settings</h2>
+
+    <button onclick="toggleMode()">Toggle Dark Mode</button>
+
+    <button onclick="showPage('dashboardPage')">Back</button>
+</div>
+
+<script>
+    function login() {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+
+        if (user === "sanjay" && pass === "123") {
+            showPage("dashboardPage");
+        } else {
+            document.getElementById("error").innerText = "Invalid Login!";
+        }
+    }
+
+    function showPage(pageId) {
+        let pages = document.querySelectorAll(".page");
+
+        pages.forEach(p => p.classList.remove("active"));
+        document.getElementById(pageId).classList.add("active");
+    }
+
+    function logout() {
+        showPage("loginPage");
+    }
+
+    function startScan() {
+        let result = document.getElementById("scanResult");
+        result.innerText = "Scanning...";
+
+        setTimeout(() => {
+            result.innerText = "✅ No Threats Found!";
+        }, 2000);
+    }
+
+    function loadReports() {
+        let list = document.getElementById("reportsList");
+
+        list.innerHTML = `
+            <li>Firewall Active</li>
+            <li>No Malware Detected</li>
+            <li>System Secure</li>
+        `;
+    }
+
+    function toggleMode() {
+        document.body.classList.toggle("dark");
+    }
+</script>
+
+</body>
+</html>
